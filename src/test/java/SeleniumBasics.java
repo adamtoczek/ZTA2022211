@@ -89,4 +89,26 @@ public class SeleniumBasics extends BaseTest{
         assertEquals("You have triggered the alert!", alertText);
         Thread.sleep(1000);
     }
+
+    @Test
+    public void iFrameTest() throws InterruptedException {
+        driver.get("https://automationtesting.co.uk/iframes.html");
+
+        driver.switchTo().frame(0);
+        driver.findElement(By.cssSelector("a[href='#sidebar']")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.cssSelector("a[href='popups.html']")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.cssSelector("div.row:nth-of-type(2) button")).click();
+
+        String alertText = driver.switchTo().alert().getText();
+        driver.switchTo().alert().accept();
+
+        assertEquals("You have triggered the alert!", alertText);
+        Thread.sleep(1000);
+
+        driver.switchTo().defaultContent();
+
+        assertEquals(2, driver.findElements(By.tagName("iframe")).size());
+    }
 }
