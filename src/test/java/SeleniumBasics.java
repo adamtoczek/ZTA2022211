@@ -18,7 +18,15 @@ public class SeleniumBasics extends BaseTest{
                 r.click();
         }
 
+        driver.findElement(By.name("lastname")).sendKeys("Kwiatkowski");
+        driver.findElement(By.name("email")).sendKeys("test3@sii.pl");
+        driver.findElement(By.name("password")).sendKeys("12345");
+        driver.findElement(By.name("birthday")).sendKeys("01/01/1901");
+        driver.findElement(By.name("customer_privacy")).click();
+        driver.findElement(By.name("psgdpr")).click();
 
+        driver.findElement(By.cssSelector("#customer-form button[type='submit']")).click();
+        driver.findElement(By.linkText("Adam Kwiatkowski"));
         Thread.sleep(5000);
 
     }
