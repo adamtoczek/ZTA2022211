@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.File;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class SeleniumBasics extends BaseTest{
 //    @Test
 //    public void shouldFillForm() throws InterruptedException {
@@ -74,5 +76,17 @@ public class SeleniumBasics extends BaseTest{
         driver.findElement(By.name("submit")).click();
         Thread.sleep(3000);
 
+    }
+
+    @Test
+    public void alertTest() throws InterruptedException {
+        driver.get("https://automationtesting.co.uk/popups.html");
+        driver.findElement(By.cssSelector("div.row:nth-of-type(2) button")).click();
+
+        String alertText = driver.switchTo().alert().getText();
+        driver.switchTo().alert().accept();
+
+        assertEquals("You have triggered the alert!", alertText);
+        Thread.sleep(1000);
     }
 }
