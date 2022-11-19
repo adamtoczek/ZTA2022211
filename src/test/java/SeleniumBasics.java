@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
@@ -127,5 +128,30 @@ public class SeleniumBasics extends BaseTest{
             }
         }
         assertEquals(2, counter);
+    }
+
+    @Test
+    public void dragTest1() throws InterruptedException {
+        driver.get("https://automationtesting.co.uk/actions.html");
+        Actions actions = new Actions(driver);
+        WebElement obj = driver.findElement(By.cssSelector("#dragtarget"));
+        WebElement target = driver.findElement(By.cssSelector(".droptarget:nth-of-type(2)"));
+        System.out.println("target text " + target.getText());
+
+        //actions.dragAndDrop(obj, target).build().perform();
+//        actions.clickAndHold(obj).moveToElement(target).release().perform();
+        actions.clickAndHold(obj).moveByOffset(200,0).release().perform();
+        Thread.sleep(1000);
+        assertEquals("Drag me!", target.getText());
+    }
+
+    @Test
+    public void dragTest2() throws InterruptedException {
+        driver.get("https://www.w3schools.com/howto/howto_js_draggable.asp");
+        WebElement source = driver.findElement(By.cssSelector("#mydivheader"));
+        Actions actios = new Actions(driver);
+        actios.clickAndHold(source).moveByOffset(500,0).release().perform();
+
+        Thread.sleep(5000);
     }
 }
