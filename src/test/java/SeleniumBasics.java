@@ -174,11 +174,23 @@ public class SeleniumBasics extends BaseTest{
     }
 
     @Test
-    public void explicitWaitTest() {
+    public void explicitWaitTest() throws InterruptedException {
         driver.get("https://automationtesting.co.uk/loader.html");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement btn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loaderBtn")));
         btn.click();
 
     }
+
+    @Test
+    public void explicitWaitMenuTest() throws InterruptedException {
+        driver.get("https://automationtesting.co.uk/index.html");
+        WebElement sidebarBtn = driver.findElement(By.cssSelector("#sidebar>a"));
+        sidebarBtn.click();
+        Thread.sleep(1000);
+        sidebarBtn.click();
+        driver.findElement(By.cssSelector("#sidebar li a")).click();
+
+    }
+
 }
