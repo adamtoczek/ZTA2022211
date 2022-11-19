@@ -111,4 +111,21 @@ public class SeleniumBasics extends BaseTest{
 
         assertEquals(2, driver.findElements(By.tagName("iframe")).size());
     }
+
+    @Test
+    public void tableTest(){
+        driver.get("https://automationtesting.co.uk/tables.html");
+
+        int counter = 0;
+
+        List<WebElement> rows = driver.findElements(By.cssSelector("tbody tr"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            if (cells.get(4).getText().equals("United Kingdom")) {
+                System.out.println(cells.get(0).getText() + " " + cells.get(1).getText());
+                counter++;
+            }
+        }
+        assertEquals(2, counter);
+    }
 }
