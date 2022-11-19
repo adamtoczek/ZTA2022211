@@ -140,7 +140,8 @@ public class SeleniumBasics extends BaseTest{
 
         //actions.dragAndDrop(obj, target).build().perform();
 //        actions.clickAndHold(obj).moveToElement(target).release().perform();
-        actions.clickAndHold(obj).moveByOffset(200,0).release().perform();
+//        actions.clickAndHold(obj).moveByOffset(200,0).release().perform();
+        actions.moveToElement(obj).moveByOffset(3, 3). clickAndHold().moveToElement(target).release().perform();
         Thread.sleep(1000);
         assertEquals("Drag me!", target.getText());
     }
@@ -154,4 +155,19 @@ public class SeleniumBasics extends BaseTest{
 
         Thread.sleep(5000);
     }
+
+    @Test
+    public void actionsTest() throws InterruptedException {
+        driver.get("https://automationtesting.co.uk/actions.html");
+        Actions actions = new Actions(driver);
+        WebElement element = driver.findElement(By.id("holdDown"));
+        actions.clickAndHold(element).perform();
+        Thread.sleep(1000);
+
+
+        WebElement dbClick = driver.findElement(By.id("doubClickStartText"));
+        actions.doubleClick(dbClick).perform();
+        assertEquals("Well Done!", dbClick.getText().trim());
+    }
+
 }
