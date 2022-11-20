@@ -7,5 +7,6 @@ public class BasePage {
     public static WebDriver driver;
 
     public static HomePage homePage;
+    public static ProductPage productPage;
 
 }

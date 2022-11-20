@@ -21,6 +21,7 @@ public class HomePage extends BasePage{
         for (WebElement tile : tiles) {
             if (tile.getText().trim().equals(productName)) {
                 tile.click();
+                BasePage.productPage = new ProductPage();
                 break;
             }
         }

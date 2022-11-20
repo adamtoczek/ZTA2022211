@@ -20,7 +20,9 @@ public class MyStorePOP extends BaseTest{
         BasePage bp = new BasePage();
         bp.homePage.navigateTo();
         bp.homePage.openProduct("THE ADVENTURE POSTER");
-//        bp.productPage.
+        bp.productPage.changeOption("Dimension", "80x120cm");
+        bp.productPage.changeQty(3);
+
 
 
 
