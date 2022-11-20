@@ -30,9 +30,9 @@ public class ResultsPage extends BasePage{
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
                 wait.until(ExpectedConditions.visibilityOf(a));
                 a.click();
+                BasePage.productQuickView = new ProductQuickView();
                 break;
             }
         }
-
     }
 }

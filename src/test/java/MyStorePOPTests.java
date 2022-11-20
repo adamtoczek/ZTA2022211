@@ -28,7 +28,9 @@ public class MyStorePOPTests extends BaseTest{
         bp.searchFor("hummingbird");
         assertEquals(5, BasePage.resultsPage.getResultsCount());
         BasePage.resultsPage.clickQuickView("HUMMINGBIRD T-SHIRT");
-//        BasePage.resultsPage.clickQuickView("HUMMINGBIRD T-SHIRT").changeOption().changeQty(2).addToBasket();
+        BasePage.productQuickView.changeOption("Size", "M");
+        BasePage.productQuickView.changeQty(2);
+        BasePage.productQuickView.addToBasket();
 
 
         Thread.sleep(1000);

@@ -13,6 +13,7 @@ public class BasePage {
     public static CartPreview cartPreview;
     public static CartPage cartPage;
     public static ResultsPage resultsPage;
+    public static ProductQuickView productQuickView;
 
     public void searchFor(String text) {
         driver.findElement(By.name("s")).sendKeys(text + Keys.ENTER);
