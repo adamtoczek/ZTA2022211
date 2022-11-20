@@ -18,32 +18,43 @@ public class ProductCommons extends BasePage{
 
     protected String CSS_MODAL="";
 
-    public void changeQty(int n) {
+    public ProductCommons changeQty(int n) {
         WebElement qty =driver.findElement(By.cssSelector(getCSSSelector(CSS_QTY_FIELD)));
         qty.clear();
         qty.sendKeys(""+n);
+        return this;
     }
 
-    public void changeOption(String option, String value) {
+    public ProductCommons changeOption(String option, String value) {
         String oldPrice = driver.findElement(By.cssSelector(getCSSSelector(CSS_ITEM_PRICE))).getAttribute("content");
         List<WebElement> variants = driver.findElements(By.cssSelector(getCSSSelector(CSS_PRODUCT_VARIANTS)));
         for (WebElement variant : variants) {
             if (variant.findElement(By.cssSelector(getCSSSelector(CSS_VARIANT_LABEL))).getText().trim().equals(option)) {
-                Select options = new Select(variant.findElement(By.tagName("select")));
-                if (!options.getFirstSelectedOption().getText().equals(value)) {
-                    options.selectByVisibleText(value);
-                    WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500));
-                    try {
-                        wait.until(c -> !driver.findElement(By.cssSelector(getCSSSelector(CSS_ITEM_PRICE))).getAttribute("content").equals(oldPrice));
+
+                WebElement variantTag = variant.findElement(By.cssSelector("span.control-label+*"));
+
+                if (variantTag.getTagName().equals("select")) {
+                    Select options = new Select(variant.findElement(By.tagName("select")));
+                    if (!options.getFirstSelectedOption().getText().equals(value)) {
+                        options.selectByVisibleText(value);
+
                     }
-                    catch (TimeoutException e) {}
                 }
+                else {
+                    variant.findElement(By.cssSelector("input[type=\"radio\"][title=\""+value+"\"]")).click();
+
+                }
+
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500));
+                try {
+                    wait.until(c -> !driver.findElement(By.cssSelector(getCSSSelector(CSS_ITEM_PRICE))).getAttribute("content").equals(oldPrice));
+                }
+                catch (TimeoutException e) {}
+
                 break;
             }
         }
-
-
-
+        return this;
     }
     public void addToBasket() {
         driver.findElement(By.cssSelector(getCSSSelector(CSS_ADD_TO_BASKET_BTN))).click();
