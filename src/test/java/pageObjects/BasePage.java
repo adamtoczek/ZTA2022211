@@ -8,5 +8,7 @@ public class BasePage {
 
     public static HomePage homePage;
     public static ProductPage productPage;
+    public static CartPreview cartPreview;
+    public static CartPage cartPage;
 
 }

@@ -20,7 +20,7 @@ public class ProductPage extends BasePage{
         qty.sendKeys(""+n);
     }
 
-    public void changeOption(String option, String value) throws InterruptedException {
+    public void changeOption(String option, String value) {
         String oldPrice = driver.findElement(By.cssSelector(CSS_ITEM_PRICE)).getAttribute("content");
         List<WebElement> variants = driver.findElements(By.cssSelector(CSS_PRODUCT_VARIANTS));
         for (WebElement variant : variants) {
@@ -37,5 +37,13 @@ public class ProductPage extends BasePage{
 
 
 
+    }
+    public void addToBasket() {
+        driver.findElement(By.cssSelector("button.add-to-cart")).click();
+        BasePage.cartPreview = new CartPreview();
+    }
+
+    public int getCurrentPrice() {
+        return Integer.parseInt(driver.findElement(By.cssSelector(CSS_ITEM_PRICE)).getAttribute("content"));
     }
 }
