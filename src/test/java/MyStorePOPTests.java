@@ -25,6 +25,12 @@ public class MyStorePOPTests extends BaseTest{
 
         assertEquals(TestUtils.formatPrice(curPrice*qty), BasePage.cartPage.getItemPrice());
 
+        BasePage.searchFor("hummingbird");
+        assertEquals(5, BasePage.resultsPage.getResultsCount());
+        BasePage.resultsPage.quickView("HUMMINGBIRD T-SHIRT");
+//        BasePage.resultsPage.quickView("HUMMINGBIRD T-SHIRT").changeOption().changeQty(2).addToBasket();
+
+
         Thread.sleep(3000);
 
     }
