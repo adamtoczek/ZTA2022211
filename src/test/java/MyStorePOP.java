@@ -22,21 +22,14 @@ public class MyStorePOP extends BaseTest{
         bp.homePage.openProduct("THE ADVENTURE POSTER");
         bp.productPage.changeOption("Dimension", "80x120cm");
         bp.productPage.changeQty(3);
+        bp.productPage.addToBasket();
 
 
 
 
-        Select prodVariant = new Select(driver.findElement(By.cssSelector("div.product-variants select")));
-        prodVariant.selectByValue("21");
-        Thread.sleep(500);
-        WebElement qty =driver.findElement(By.name("qty"));
-        WebElement addQtyBtn = driver.findElement(By.cssSelector(".qty button:nth-of-type(1)"));
-//        addQtyBtn.click();
-//        addQtyBtn.click();
-//        Actions actions = new Actions(driver);
-//        actions.moveToElement(qty).doubleClick(qty).sendKeys("3").perform();
-        qty.clear();
-        qty.sendKeys(""+3);
+
+
+
 
         int curPrice = Integer.parseInt(driver.findElement(By.cssSelector(".current-price>span")).getAttribute("content"));
         String curPriceText = driver.findElement(By.cssSelector(".current-price>span")).getText();
