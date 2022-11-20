@@ -1,26 +1,28 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.BasePage;
 
 import java.text.NumberFormat;
 import java.time.Duration;
-import java.util.Formatter;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SpaghettiTest extends BaseTest{
+public class MyStorePOP extends BaseTest{
     @Test
     public void cartShouldContainAddedItems() throws InterruptedException {
-        driver.get("http://146.59.32.4/index.php");
 
-        driver.findElement(By.cssSelector("div.products>div.product:nth-of-type(3)")).click();
+        BasePage bp = new BasePage();
+        bp.homePage.navigateTo();
+        bp.homePage.openProduct("THE ADVENTURE POSTER");
+//        bp.productPage.
+
+
 
         Select prodVariant = new Select(driver.findElement(By.cssSelector("div.product-variants select")));
         prodVariant.selectByValue("21");

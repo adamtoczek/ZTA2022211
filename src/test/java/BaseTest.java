@@ -5,6 +5,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pageObjects.BasePage;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +22,7 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        BasePage.driver = driver;
     }
 
     @AfterAll
