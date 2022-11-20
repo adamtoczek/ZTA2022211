@@ -10,7 +10,7 @@ public class MyStorePOPTests extends BaseTest{
     public void cartShouldContainAddedItems() throws InterruptedException {
         int qty = 3;
 
-//        BasePage bp = new BasePage();
+        BasePage bp = new BasePage();
         HomePage.navigateTo();
         BasePage.homePage.openProduct("THE ADVENTURE POSTER");
         BasePage.productPage.changeOption("Dimension", "80x120cm");
@@ -25,13 +25,13 @@ public class MyStorePOPTests extends BaseTest{
 
         assertEquals(TestUtils.formatPrice(curPrice*qty), BasePage.cartPage.getItemPrice());
 
-        BasePage.searchFor("hummingbird");
+        bp.searchFor("hummingbird");
         assertEquals(5, BasePage.resultsPage.getResultsCount());
-        BasePage.resultsPage.quickView("HUMMINGBIRD T-SHIRT");
-//        BasePage.resultsPage.quickView("HUMMINGBIRD T-SHIRT").changeOption().changeQty(2).addToBasket();
+        BasePage.resultsPage.clickQuickView("HUMMINGBIRD T-SHIRT");
+//        BasePage.resultsPage.clickQuickView("HUMMINGBIRD T-SHIRT").changeOption().changeQty(2).addToBasket();
 
 
-        Thread.sleep(3000);
+        Thread.sleep(1000);
 
     }
 
